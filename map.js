@@ -1,1 +1,2 @@
-import('3d.js');
+var engine = import('3d.js');
+
