@@ -127,6 +127,7 @@
   }
   function control() {
     if (ctrlHit) {
+    xrot = Math.min(Math.max(this, -90), 90);
     if (keys["38"]) {xrot+=1} // Up
     if (keys["40"]) {xrot-=1} // Down
     if (keys["37"]) {yrot+=1} // Left
