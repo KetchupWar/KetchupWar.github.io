@@ -92,6 +92,11 @@
       }
     }
   }
+
+  function cube(x_,y_,z_,w_,h_){
+    
+  }
+
   function zorder() {
     for (d=0;d<edges.length;d++) {
       furtherlen = -999999999999999999999999999999999999999999999999;
@@ -125,9 +130,9 @@
     x1 = dis*Math.sin(dir + (zrot)*Math.PI/180);
     y1 = dis*Math.cos(dir + (zrot)*Math.PI/180);
   }
+
   function control() {
     if (ctrlHit) {
-    xrot = Math.min(Math.max(this, -90), 90);
     if (keys["38"]) {xrot+=1} // Up
     if (keys["40"]) {xrot-=1} // Down
     if (keys["37"]) {yrot+=1} // Left
