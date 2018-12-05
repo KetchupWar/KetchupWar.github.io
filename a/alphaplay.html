@@ -60,7 +60,6 @@
   }
   
   function rendershape() {
-    alert(edgetype[i]+ " " + i)
     if (edgetype[i] == 1) {
       // Don't draw it if its behind the player (ADD THAT)
       ctx.beginPath();
@@ -78,7 +77,6 @@
     ctx.stroke();
     }
     if (edgetype[i] == 2) {
-      
       gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
       perspective(x1,y1,z1);
       if (z1>0) {
@@ -111,6 +109,7 @@
       i = furtheritem;
       rendershape();
       edges.splice(furtheritem, 1);
+      edgetype.splice(furtheritem, 1);
       d-=1;
     }
   }
