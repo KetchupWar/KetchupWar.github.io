@@ -12,6 +12,7 @@
   var c;
   var w;
   var d;
+  var t;
   
   // event.clientX
   // event.clientY
@@ -55,26 +56,28 @@
     nodesX = [-100,100,100,-100,-100,100,100,-100,300,-300];
     nodesY = [100,100,-100,-100,100,100,-100,-100,0,0];
     nodesZ = [100,100,100,100,-100,-100,-100,-100,0,0];
-    edges = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7],[8,8],[9,9]];
+    edges = [[0,1,2,3],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7],[8,8],[9,9]];
     edgetype = [1,1,1,1,1,1,1,1,1,1,1,1,2,2];
   }
   
   function rendershape() {
     if (edgetype[i] == 1) {
-      // Don't draw it if its behind the player (ADD THAT)
       ctx.beginPath();
-      gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
-      var olz1 = z1;
-      if (z1>0) {
-        perspective(x1,y1,z1);
-        ctx.moveTo(x1,y1);
-        gotoxyz(nodesX[edges[i][1]],nodesY[edges[i][1]],nodesZ[edges[i][1]]);
+      for (t=0;t<edges[i].length;t++) {
+        gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
         if (z1>0) {
           perspective(x1,y1,z1);
-          ctx.lineTo(x1,y1);
+          if (t==0) {
+            ctx.moveTo(x1,y1);
+          }
+          else {
+            ctx.lineTo(x1,y1);
+          }
         }
       }
-    ctx.stroke();
+      ctx.fill();
+      ctx.stroke();
+      
     }
     if (edgetype[i] == 2) {
       gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
