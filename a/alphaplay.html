@@ -64,7 +64,7 @@
     if (edgetype[i] == 1) {
       ctx.beginPath();
       for (t=0;t<edges[i].length;t++) {
-        gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
+        gotoxyz(nodesX[edges[i][t]],nodesY[edges[i][t]],nodesZ[edges[i][t]]);
         if (z1>0) {
           perspective(x1,y1,z1);
           if (t==0) {
