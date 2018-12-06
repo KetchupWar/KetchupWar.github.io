@@ -64,6 +64,7 @@
   }
 //==============================
   function rendershape() {
+    quad(100,100,100);
     if (edges[i][2] == 1) {
       // Don't draw it if its behind the player (ADD THAT)
       ctx.beginPath();
