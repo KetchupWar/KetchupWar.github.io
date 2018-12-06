@@ -8,7 +8,9 @@ var c=document.getElementById("myCanvas");
   var w;
   var d;
   var t;
-
+  
+  var touchee = false;
+  
   // Keypresses
   var keys = {};
   window.onkeyup = function(e) { keys[e.keyCode] = false; }
@@ -60,13 +62,16 @@ var c=document.getElementById("myCanvas");
           perspective(x1,y1,z1);
           if (t==0) {
             ctx.moveTo(x1,y1);
+            //======================
+            touchee = true;
+            //======================
           }
           else {
             ctx.lineTo(x1,y1);
           }
         }
       }
-      ctx.fillStyle = "rgba(0, 0, 255)";
+      ctx.fillStyle = "rgba(196, 127, 0)";
       ctx.fill();
       ctx.stroke();
       
