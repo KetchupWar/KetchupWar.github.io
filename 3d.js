@@ -2,7 +2,7 @@ var c=document.getElementById("myCanvas");
   c.width  = window.innerWidth;
   c.height = window.innerHeight;
   var ctx=c.getContext("2d");
-  var mov=3;
+  var mov=6;
   var i;
   var c;
   var w;
@@ -47,7 +47,7 @@ var c=document.getElementById("myCanvas");
     nodesY = [100,100,-100,-100,100,100,-100,-100,0,0];
     nodesZ = [100,100,100,100,-100,-100,-100,-100,0,0];
     //First 2 verts + 2 then the next 2 nums are the right ones
-    edges = [[0,1,2,3],[2,1,5,6],[2,3],[0,3,8,7],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7],[8,8],[9,9]];
+    edges = [[0,1,2,3],[2,1,5,6],[2,3],[0,3,9,7],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7],[8,8],[9,9]];
     edgetype = [1,1,1,1,1,1,1,1,1,1,1,1,2,2];
   }
   
@@ -132,8 +132,8 @@ var c=document.getElementById("myCanvas");
   }
 
   function sprint() {
-    if (keys["16"]) {mov=6;fov=1.1}
-    else {mov=3;fov=1.5}
+    if (keys["16"]) {mov=9;fov=1.1}
+    else {mov=6;fov=1.5}
   }
 
   function control() {
