@@ -131,7 +131,14 @@ var c=document.getElementById("myCanvas");
     x1 = dis*Math.sin(dir + (zrot)*Math.PI/180);
     y1 = dis*Math.cos(dir + (zrot)*Math.PI/180);
   }
+
+  function sprint() {
+    if (keys["16"]) {mov=6;fov=1.1}
+    else {mov=3;fov=1.5}
+  }
+
   function control() {
+    sprint();
     if (keys["38"]) {xrot+=1} // Up
     if (keys["40"]) {xrot-=1} // Down
     if (keys["37"]) {yrot+=1} // Left
