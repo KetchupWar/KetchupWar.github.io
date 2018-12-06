@@ -7,6 +7,7 @@
   c.width  = window.innerWidth;
   c.height = window.innerHeight;
   var ctx=c.getContext("2d");
+  var mov = 3;
 
   var i;
   var c;
@@ -143,27 +144,33 @@
     y1 = dis*Math.cos(dir + (zrot)*Math.PI/180);
   }
 
+  function sprint() {
+    if (keys["16"]) {mov=6}
+    else {mov=3}
+  }
+  
   function control() {
+    sprint();
     if (keys["38"]) {xrot+=1} // Up
     if (keys["40"]) {xrot-=1} // Down
     if (keys["37"]) {yrot+=1} // Left
     if (keys["39"]) {yrot-=1} // Right
     // Movement
     if (keys["87"]) { // Forward
-      pz += 2*Math.cos(yrot*Math.PI/180);
-      px += -2*Math.sin(yrot*Math.PI/180);
+      pz += mov*Math.cos(yrot*Math.PI/180);
+      px += -mov*Math.sin(yrot*Math.PI/180);
     }
     if (keys["83"]) { // Forward
-      pz += -2*Math.cos(yrot*(Math.PI/180));
-      px += 2*Math.sin(yrot*Math.PI/180);
+      pz += -mov*Math.cos(yrot*(Math.PI/180));
+      px += mov*Math.sin(yrot*Math.PI/180);
     }
     if (keys["65"]) { // Move Left
-      pz += -2*Math.cos((yrot-90)*(Math.PI/180));
-      px += 2*Math.sin((yrot-90)*Math.PI/180);
+      pz += -mov*Math.cos((yrot-90)*(Math.PI/180));
+      px += mov*Math.sin((yrot-90)*Math.PI/180);
     }
     if (keys["68"]) { // Move Right
-      pz += -2*Math.cos((yrot+90)*(Math.PI/180));
-      px += 2*Math.sin((yrot+90)*Math.PI/180);
+      pz += -mov*Math.cos((yrot+90)*(Math.PI/180));
+      px += mov*Math.sin((yrot+90)*Math.PI/180);
     }
     if (keys["32"] && py<2) { // Jump
       yvel = 22;
