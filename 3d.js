@@ -143,20 +143,20 @@ var c=document.getElementById("myCanvas");
     if (keys["39"]) {yrot-=1} // Right
     // Movement
     if (keys["87"]) { // Forward
-      pz += 2*Math.cos(yrot*Math.PI/180);
-      px += -2*Math.sin(yrot*Math.PI/180);
+      pz += mov*Math.cos(yrot*Math.PI/180);
+      px += -mov*Math.sin(yrot*Math.PI/180);
     }
     if (keys["83"]) { // Forward
-      pz += -2*Math.cos(yrot*(Math.PI/180));
-      px += 2*Math.sin(yrot*Math.PI/180);
+      pz += -mov*Math.cos(yrot*(Math.PI/180));
+      px += mov*Math.sin(yrot*Math.PI/180);
     }
     if (keys["65"]) { // Move Left
-      pz += -2*Math.cos((yrot-90)*(Math.PI/180));
-      px += 2*Math.sin((yrot-90)*Math.PI/180);
+      pz += -mov*Math.cos((yrot-90)*(Math.PI/180));
+      px += mov*Math.sin((yrot-90)*Math.PI/180);
     }
     if (keys["68"]) { // Move Right
-      pz += -2*Math.cos((yrot+90)*(Math.PI/180));
-      px += 2*Math.sin((yrot+90)*Math.PI/180);
+      pz += -mov*Math.cos((yrot+90)*(Math.PI/180));
+      px += mov*Math.sin((yrot+90)*Math.PI/180);
     }
     if (keys["32"] && py<2) { // Jump
       yvel = 22;
