@@ -49,11 +49,20 @@
     nodesZ = [100,100,100,100,-100,-100,-100,-100,0,0];
     edges = [[0,1,1],[1,2,1],[2,3,1],[3,0,1],[4,5,1],[5,6,1],[6,7,1],[7,4,1],[0,4,1],[1,5,1],[2,6,1],[3,7,1],[8,8,2],[9,9,2]];
   }
-
-  function cube(x_,y_,z_,w_,h_){
-    nodesX.push(-x_);
+//==============================
+//The quad and append function
+  function quad(x_,y_,z_){
+    appnd(-x_,y_,z_);
+    appnd(x_,y_,z_);
+    appnd(x_,y_,z_);
+    appnd(-x_,-y_,z_);
   }
-  
+  function appnd(x_,y_,z_){
+    nodesX.push(x_);
+    nodesY.push(y_);
+    nodesZ.push(z_);
+  }
+//==============================
   function rendershape() {
     if (edges[i][2] == 1) {
       // Don't draw it if its behind the player (ADD THAT)
