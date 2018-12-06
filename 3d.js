@@ -7,10 +7,7 @@ var c=document.getElementById("myCanvas");
   var w;
   var d;
   var t;
-  
-  // event.clientX
-  // event.clientY
-  
+
   // Keypresses
   var keys = {};
   window.onkeyup = function(e) { keys[e.keyCode] = false; }
