@@ -2,6 +2,7 @@ var c=document.getElementById("myCanvas");
   c.width  = window.innerWidth;
   c.height = window.innerHeight;
   var ctx=c.getContext("2d");
+  var mov=3;
   var i;
   var c;
   var w;
@@ -131,7 +132,7 @@ var c=document.getElementById("myCanvas");
 
   function sprint() {
     if (keys["16"]) {mov=6;fov=1.1}
-    else {mov=3;fov=1.5}
+    else {mov*=3;fov=1.5}
   }
 
   function control() {
