@@ -1,4 +1,4 @@
-  var c=document.getElementById("myCanvas");
+var c=document.getElementById("myCanvas");
   c.width  = window.innerWidth;
   c.height = window.innerHeight;
   var ctx=c.getContext("2d");
@@ -6,6 +6,7 @@
   var c;
   var w;
   var d;
+  var t;
   
   // event.clientX
   // event.clientY
@@ -15,7 +16,6 @@
   window.onkeyup = function(e) { keys[e.keyCode] = false; }
   window.onkeydown = function(e) { keys[e.keyCode] = true; }
   // Initiate standard variables
-  var ctrlHit = true;
   var dir;
   var dis;
   var xrot = 0;
@@ -38,6 +38,7 @@
   
   // 3D Data
   var edges = [];
+  var edgetype = [];
   var nodesX = [];
   var nodesY = [];
   var nodesZ = [];
@@ -47,44 +48,34 @@
     nodesX = [-100,100,100,-100,-100,100,100,-100,300,-300];
     nodesY = [100,100,-100,-100,100,100,-100,-100,0,0];
     nodesZ = [100,100,100,100,-100,-100,-100,-100,0,0];
-    edges = [[0,1,1],[1,2,1],[2,3,1],[3,0,1],[4,5,1],[5,6,1],[6,7,1],[7,4,1],[0,4,1],[1,5,1],[2,6,1],[3,7,1],[8,8,2],[9,9,2]];
+    edges = [[0,1,2,3],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7],[8,8],[9,9]];
+    edgetype = [1,1,1,1,1,1,1,1,1,1,1,1,2,2];
   }
-//==============================
-//The quad and append function
-  function quad(x_,y_,z_){
-    appnd(-x_,y_,z_);
-    appnd(x_,y_,z_);
-    appnd(x_,y_,z_);
-    appnd(-x_,-y_,z_);
-  }
-  function appnd(x_,y_,z_){
-    nodesX.push(x_);
-    nodesY.push(y_);
-    nodesZ.push(z_);
-  }
-//==============================
+  
   function rendershape() {
-    quad(50,50,50);
-    if (edges[i][2] == 1) {
-      //TODO Don't draw it if its behind the player
+    if (edgetype[i] == 1) {
       ctx.beginPath();
-      gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
-      var olz1 = z1;
-      if (z1>0) {
-        perspective(x1,y1,z1);
-        ctx.moveTo(x1,y1);
-        gotoxyz(nodesX[edges[i][1]],nodesY[edges[i][1]],nodesZ[edges[i][1]]);
-        if (z1>0) { ctrlhit = false;
+      for (t=0;t<edges[i].length;t++) {
+        gotoxyz(nodesX[edges[i][t]],nodesY[edges[i][t]],nodesZ[edges[i][t]]);
+        if (z1>0) {
           perspective(x1,y1,z1);
-          ctx.lineTo(x1,y1);
+          if (t==0) {
+            ctx.moveTo(x1,y1);
+          }
+          else {
+            ctx.lineTo(x1,y1);
+          }
         }
       }
-    ctx.stroke();
+      ctx.fillStyle = "rgba(0, 0, 255, 0.2)";
+      ctx.fill();
+      ctx.stroke();
+      
     }
-    if (edges[i][2] == 2) {
+    if (edgetype[i] == 2) {
       gotoxyz(nodesX[edges[i][0]],nodesY[edges[i][0]],nodesZ[edges[i][0]]);
       perspective(x1,y1,z1);
-      if (z1>0) { ctrlhit = false;
+      if (z1>0) {
         var img=document.getElementById("tree");
         var isize = (200*(210/(z1/fov)))
         pointto(nodesY[edges[i][0]]+py,Math.abs((nodesY[edges[i][0]]+500)-pz));
@@ -106,9 +97,6 @@
       }
     }
   }
-
-
-
   function zorder() {
     for (d=0;d<edges.length;d++) {
       furtherlen = -999999999999999999999999999999999999999999999999;
@@ -116,6 +104,7 @@
       i = furtheritem;
       rendershape();
       edges.splice(furtheritem, 1);
+      edgetype.splice(furtheritem, 1);
       d-=1;
     }
   }
@@ -142,9 +131,7 @@
     x1 = dis*Math.sin(dir + (zrot)*Math.PI/180);
     y1 = dis*Math.cos(dir + (zrot)*Math.PI/180);
   }
-
   function control() {
-    if (ctrlHit) {
     if (keys["38"]) {xrot+=1} // Up
     if (keys["40"]) {xrot-=1} // Down
     if (keys["37"]) {yrot+=1} // Left
@@ -166,9 +153,8 @@
       pz += -2*Math.cos((yrot+90)*(Math.PI/180));
       px += 2*Math.sin((yrot+90)*Math.PI/180);
     }
-    if (keys["32"]) { // Jump
-      yvel = 12;
-    }
+    if (keys["32"] && py<2) { // Jump
+      yvel = 22;
     }
     py+=yvel;
     yvel-=1;
@@ -184,7 +170,6 @@
     drawdata();
     zorder();
     control();
-    ctrlHit = true;
     window.requestAnimationFrame(step);
   }
   window.requestAnimationFrame(step);
