@@ -56,6 +56,7 @@
     appnd(x_,y_,z_);
     appnd(x_,y_,z_);
     appnd(-x_,-y_,z_);
+    edges.push([0,0,1],[1,2,1],[2,3,1],[3,0,1]);
   }
   function appnd(x_,y_,z_){
     nodesX.push(x_);
@@ -64,7 +65,7 @@
   }
 //==============================
   function rendershape() {
-    quad(100,100,100);
+    quad(50,50,50);
     if (edges[i][2] == 1) {
       // Don't draw it if its behind the player (ADD THAT)
       ctx.beginPath();
