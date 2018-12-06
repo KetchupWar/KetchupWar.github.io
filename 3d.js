@@ -132,7 +132,7 @@ var c=document.getElementById("myCanvas");
 
   function sprint() {
     if (keys["16"]) {mov=6;fov=1.1}
-    else {mov*=3;fov=1.5}
+    else {mov=3;fov=1.5}
   }
 
   function control() {
