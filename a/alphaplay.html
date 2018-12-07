@@ -113,14 +113,12 @@
       furtheritem = 0;
       var avz = 0;
       for (c=0;c<edges.length;c++) {
-        for (w=0;w<edges[c].length;w++) {
-          x1 = nodesX[edges[c][w]]
-          y1 = nodesY[edges[c][w]]
-          z1 = nodesZ[edges[c][w]]
-          gotoxyz(x1,y1,z1);
-          avz+=z1;
-        }
-        avz=avz/edges[c].length;
+        x1 = nodesX[edges[c][0]]
+        y1 = nodesY[edges[c][0]]
+        z1 = nodesZ[edges[c][0]]
+        gotoxyz(x1,y1,z1);
+        avz+=z1;
+        avz=avz/1;
         if (avz>furtherlen) {
           furtherlen=avz;
           furtheritem=c;
