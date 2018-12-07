@@ -114,13 +114,10 @@
       var avz = 0;
       for (c=0;c<edges.length;c++) {
         for (w=0;w<edges[c].length;w++) {
-          alert(edges[c][w])
-          alert(nodesX[edges[c][w]])
-          alert(nodesY[edges[c][w]])
-          alert(nodesZ[edges[c][w]])
-          gotoxyz(-100,100,100);
-          alert("test")
-          gotoxyz(Number(nodesX[edges[c][w]]),Number(nodesY[edges[c][w]]),Number(nodesZ[edges[i][w]]));
+          x1 = nodesX[edges[c][w]]
+          y1 = nodesY[edges[c][w]]
+          z1 = nodesZ[edges[c][w]]
+          gotoxyz(x1,y1,z1);
           avz+=z1;
         }
         avz=avz/edges[c].length;
