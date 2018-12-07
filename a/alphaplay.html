@@ -120,7 +120,7 @@
           alert(nodesZ[edges[c][w]])
           gotoxyz(-100,100,100);
           alert("test")
-          gotoxyz(nodesX[edges[c][w]],nodesY[edges[c][w]],nodesZ[edges[i][w]]);
+          gotoxyz(Number(nodesX[edges[c][w]]),Number(nodesY[edges[c][w]]),Number(nodesZ[edges[i][w]]));
           avz+=z1;
         }
         avz=avz/edges[c].length;
