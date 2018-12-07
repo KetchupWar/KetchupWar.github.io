@@ -108,20 +108,26 @@
   }
 
   function zorder() {
+    alert("1")
     for (d=0;d<edges.length;d++) {
       furtherlen = -999999999999999999999999999999999999999999999999;
       furtheritem = 0;
       var avz = 0;
+      alert("2")
       for (c=0;c<edges.length;c++) {
+        alert("3")
         for (w=0;w<edges[c].length;w++) {
           gotoxyz(nodesX[edges[c][w]],nodesY[edges[c][w]],nodesZ[edges[i][w]]);
           avz+=z1;
         }
+        alert("4")
         avz=avz/edges[c].length;
+        alert("5")
         if (avz>furtherlen) {
           furtherlen=avz;
           furtheritem=c;
         }
+        alert("6")
       }
       alert(furtheritem);
       
