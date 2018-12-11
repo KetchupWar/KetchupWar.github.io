@@ -71,7 +71,7 @@ var c=document.getElementById("myCanvas");
           }
         }
       }
-      ctx.fillStyle = "rgba(196, 127, 0)";
+      ctx.fillStyle = "rgba(4, 255, 0)";
       ctx.fill();
       ctx.stroke();
       
