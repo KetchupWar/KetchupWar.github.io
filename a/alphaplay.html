@@ -110,6 +110,12 @@
   function zorder() {
     for (d=0;d<edges.length;d++) {
       i = d;
+      avz=0;
+      for (c=0;c<edges[d].length;c++) {
+        gotoxyz(nodesX[edges[d][c]],nodesY[edges[d][c]],nodesZ[edges[d][c]]);
+        avz+=z1;
+      }
+      avz=avz/edges[d].length;
       rendershape();
       edges.splice(furtheritem, 1);
       edgetype.splice(furtheritem, 1);
