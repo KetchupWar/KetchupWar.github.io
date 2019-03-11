@@ -10,7 +10,7 @@
   var mov = 3;
 
   var i;
-  var c;
+  var c_;
   var w;
   var d;
   var t;
@@ -118,8 +118,8 @@
         var highi = 0;
         for (r=0;r<edges.length;r++) {
           if (r < edges.length && r > -1) {
-            for (c=0;c<edges[r].length;c++) {
-              gotoxyz(nodesX[edges[r][c]],nodesY[edges[r][c]],nodesZ[edges[r][c]]);
+            for (c_=0;c<edges[r].length;c_++) {
+              gotoxyz(nodesX[edges[r][c_]],nodesY[edges[r][c_]],nodesZ[edges[r][c_]]);
               avz+=z1;
             }
             avz=avz/edges[r].length;
