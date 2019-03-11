@@ -14,6 +14,7 @@
   var w;
   var d;
   var t;
+  var r;
   
   // event.clientX
   // event.clientY
@@ -109,16 +110,22 @@
 
   function zorder() {
     for (d=0;d<edges.length;d++) {
-      i = d;
       avz=0;
-      for (c=0;c<edges[d].length;c++) {
-        gotoxyz(nodesX[edges[d][c]],nodesY[edges[d][c]],nodesZ[edges[d][c]]);
-        avz+=z1;
+      var highz = -9999;
+      var highi = 0;
+      for (r=0;r<edges.length;r++) {
+        for (c=0;c<edges[d].length;c++) {
+          gotoxyz(nodesX[edges[r][c]],nodesY[edges[r][c]],nodesZ[edges[r][c]]);
+          avz+=z1;
+        }
+        avz=avz/edges[d].length;
+        if (avz > highz) {highz = avz; highi=r}
       }
-      avz=avz/edges[d].length;
+      i = highi;
+      
       rendershape();
-      edges.splice(furtheritem, 1);
-      edgetype.splice(furtheritem, 1);
+      edges.splice(highi, 1);
+      edgetype.splice(highi, 1);
       d-=1;
     }
   }
