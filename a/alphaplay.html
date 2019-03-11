@@ -117,12 +117,14 @@
         var highz = -9999;
         var highi = 0;
         for (r=0;r<edges.length;r++) {
-          for (c=0;c<edges[r].length;c++) {
-            gotoxyz(nodesX[edges[r][c]],nodesY[edges[r][c]],nodesZ[edges[r][c]]);
-            avz+=z1;
+          if (r < edges.length && r > -1) {
+            for (c=0;c<edges[r].length;c++) {
+              gotoxyz(nodesX[edges[r][c]],nodesY[edges[r][c]],nodesZ[edges[r][c]]);
+              avz+=z1;
+            }
+            avz=avz/edges[r].length;
+            if (avz > highz) {highz = avz; highi=r}
           }
-          avz=avz/edges[r].length;
-          if (avz > highz) {highz = avz; highi=r}
         }
         i = highi;
         
