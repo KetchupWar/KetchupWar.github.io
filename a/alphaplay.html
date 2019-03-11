@@ -109,6 +109,7 @@
   }
 
   function zorder() {
+    try {
     var tlen = edges.length;
     for (d=0;d<tlen;d++) {
       if (edges.length > 0) {
@@ -125,11 +126,13 @@
         }
         i = highi;
         
+        if (i < edges.length && i > -1) {
         rendershape();
         edges.splice(highi, 1);
-        edgetype.splice(highi, 1);
+        edgetype.splice(highi, 1);}
       }
     }
+    } catch(err) {alert(err)}
   }
   
   function pointto(x,y) {
