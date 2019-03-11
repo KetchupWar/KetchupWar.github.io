@@ -109,7 +109,8 @@
   }
 
   function zorder() {
-    for (d=0;d<edges.length;d++) {
+    var tlen = edges.length;
+    for (d=0;d<tlen;d++) {
       avz=0;
       var highz = -9999;
       var highi = 0;
@@ -126,7 +127,6 @@
       rendershape();
       edges.splice(highi, 1);
       edgetype.splice(highi, 1);
-      d-=1;
     }
   }
   
