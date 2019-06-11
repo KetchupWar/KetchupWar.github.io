@@ -2,14 +2,16 @@ var c=document.getElementById("myCanvas");
   c.width  = window.innerWidth;
   c.height = window.innerHeight;
   var ctx=c.getContext("2d");
-  var mov=6;
+  var mov = 3;
   var i;
-  var c;
+  var c_;
   var w;
   var d;
   var t;
+  var r;
   
-  var touchee = false;
+  // event.clientX
+  // event.clientY
   
   // Keypresses
   var keys = {};
@@ -48,8 +50,7 @@ var c=document.getElementById("myCanvas");
     nodesX = [-100,100,100,-100,-100,100,100,-100,300,-300];
     nodesY = [100,100,-100,-100,100,100,-100,-100,0,0];
     nodesZ = [100,100,100,100,-100,-100,-100,-100,0,0];
-    //First 2 verts + 2 then the next 2 nums are the right ones
-    edges = [[0,1,2,3],[2,1,5,6],[2,3],[0,3,3,7],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7],[8,8],[9,9]];
+    edges = [[0,1,2,3],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7],[8,8],[9,9]];
     edgetype = [1,1,1,1,1,1,1,1,1,1,1,1,2,2];
   }
   
@@ -62,16 +63,13 @@ var c=document.getElementById("myCanvas");
           perspective(x1,y1,z1);
           if (t==0) {
             ctx.moveTo(x1,y1);
-            //======================
-            touchee = true;
-            //======================
           }
           else {
             ctx.lineTo(x1,y1);
           }
         }
       }
-      ctx.fillStyle = "rgba(4, 255, 0)";
+      ctx.fillStyle = "rgba(0, 0, 255, 0.2)";
       ctx.fill();
       ctx.stroke();
       
@@ -102,15 +100,32 @@ var c=document.getElementById("myCanvas");
     }
   }
   function zorder() {
-    for (d=0;d<edges.length;d++) {
-      furtherlen = -999999999999999999999999999999999999999999999999;
-      furtheritem = d;
-      i = furtheritem;
-      rendershape();
-      edges.splice(furtheritem, 1);
-      edgetype.splice(furtheritem, 1);
-      d-=1;
+    try {
+    var tlen = edges.length;
+    for (d=0;d<tlen;d++) {
+      if (edges.length > 0) {
+        avz=0;
+        var highz = -9999;
+        var highi = 0;
+        for (r=0;r<edges.length;r++) {
+          if (r < edges.length && r > -1) {
+            for (c_=0;c_<edges[r].length;c_++) {
+              gotoxyz(nodesX[edges[r][c_]],nodesY[edges[r][c_]],nodesZ[edges[r][c_]]);
+              avz+=z1;
+            }
+            avz=avz/edges[r].length;
+            if (avz > highz) {highz = avz; highi=r}
+          }
+        }
+        i = highi;
+        
+        if (i < edges.length && i > -1) {
+        rendershape();
+        edges.splice(highi, 1);
+        edgetype.splice(highi, 1);}
+      }
     }
+    } catch(err) {alert(err)}
   }
   
   function pointto(x,y) {
@@ -135,12 +150,11 @@ var c=document.getElementById("myCanvas");
     x1 = dis*Math.sin(dir + (zrot)*Math.PI/180);
     y1 = dis*Math.cos(dir + (zrot)*Math.PI/180);
   }
-
   function sprint() {
-    if (keys["16"]) {mov=9;fov=1.1}
-    else {mov=6;fov=1.5}
+    if (keys["16"]) {mov=6;fov=1.1}
+    else {mov=3;fov=1.5}
   }
-
+  
   function control() {
     sprint();
     if (keys["38"]) {xrot+=1} // Up
