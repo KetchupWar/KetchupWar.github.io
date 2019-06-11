@@ -105,7 +105,7 @@ var c=document.getElementById("myCanvas");
     for (d=0;d<tlen;d++) {
       if (edges.length > 0) {
         avz=0;
-        var highz = -9999;
+        var highz = -99999;
         var highi = 0;
         for (r=0;r<edges.length;r++) {
           if (r < edges.length && r > -1) {
