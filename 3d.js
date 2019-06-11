@@ -15,7 +15,7 @@ var c=document.getElementById("myCanvas");
   
   // Keypresses
   var keys = {};
-  window.onmousemove = function(e) {yrot=e.clientX;xrot=e.clientY}
+  window.onmousemove = function(e) {yrot=e.x;xrot=e.y}
   window.onkeyup = function(e) { keys[e.keyCode] = false; }
   window.onkeydown = function(e) { keys[e.keyCode] = true; }
   // Initiate standard variables
